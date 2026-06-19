@@ -40,3 +40,24 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
 });
+// ============================================
+// DARK / LIGHT MODE TOGGLE
+// ============================================
+
+document.addEventListener('DOMContentLoaded', function () {
+
+  const themeToggle = document.getElementById('themeToggle');
+
+  if (!themeToggle) return;
+
+  themeToggle.addEventListener('click', function () {
+    document.body.classList.toggle('dark-mode');
+
+    if (document.body.classList.contains('dark-mode')) {
+      themeToggle.textContent = '☀️';
+    } else {
+      themeToggle.textContent = '🌙';
+    }
+  });
+
+});
