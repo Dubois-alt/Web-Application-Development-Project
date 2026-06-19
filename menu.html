@@ -31,7 +31,70 @@
 
   </div>
 </nav>
-    
+    <div class="container py-5">
+
+  <h1 class="text-center mb-4">Our Menu</h1>
+
+  <!-- Filter buttons -->
+  <div class="d-flex justify-content-center gap-2 flex-wrap mb-5" id="filterButtons">
+    <button class="btn btn-dark filter-btn active" data-filter="all">All</button>
+    <button class="btn btn-outline-dark filter-btn" data-filter="coffee">Coffee</button>
+    <button class="btn btn-outline-dark filter-btn" data-filter="cold">Cold Drinks</button>
+    <button class="btn btn-outline-dark filter-btn" data-filter="non-coffee">Non-Coffee</button>
+    <button class="btn btn-outline-dark filter-btn" data-filter="food">Food & Pastries</button>
+  </div>
+
+  <!-- Menu items grid -->
+  <div class="row g-4" id="menuGrid">
+
+    <!-- COFFEE ITEMS -->
+    <div class="col-sm-6 col-lg-3 menu-item" data-category="coffee">
+      <div class="card h-100">
+        <img src="images/espresso.jpg" class="card-img-top" alt="Espresso">
+        <div class="card-body">
+          <h5 class="card-title">Espresso</h5>
+          <p class="card-text">Strong and bold single shot of espresso.</p>
+          <p class="fw-bold">KES 220</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-6 col-lg-3 menu-item" data-category="coffee">
+      <div class="card h-100">
+        <img src="images/latte.jpg" class="card-img-top" alt="Latte">
+        <div class="card-body">
+          <h5 class="card-title">Latte</h5>
+          <p class="card-text">Espresso with steamed milk and a light layer of foam.</p>
+          <p class="fw-bold">KES 330</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-6 col-lg-3 menu-item" data-category="coffee">
+      <div class="card h-100">
+        <img src="images/cappuccino.jpg" class="card-img-top" alt="Cappuccino">
+        <div class="card-body">
+          <h5 class="card-title">Cappuccino</h5>
+          <p class="card-text">Espresso with equal parts steamed milk and milk foam.</p>
+          <p class="fw-bold">KES 300</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-6 col-lg-3 menu-item" data-category="coffee">
+      <div class="card h-100">
+        <img src="images/mocha.jpg" class="card-img-top" alt="Mocha">
+        <div class="card-body">
+          <h5 class="card-title">Mocha</h5>
+          <p class="card-text">Espresso with chocolate syrup, steamed milk and foam.</p>
+          <p class="fw-bold">KES 370</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- more categories coming in step 3 -->
+</div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
