@@ -62,94 +62,238 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
-// ============================================
-// STAR RATING PICKER (Reviews page)
-// ============================================
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener("DOMContentLoaded", function () {
 
-  const starRating = document.getElementById('starRating');
-  if (!starRating) return; // only run this on the reviews page
+    // ==========================
+    // CHECK IF WE ARE ON REVIEWS PAGE
+    // ==========================
 
-  const stars = starRating.querySelectorAll('.star');
-  const ratingInput = document.getElementById('ratingValue');
+    const reviewForm = document.getElementById("reviewForm");
 
-  stars.forEach(function (star) {
-    star.addEventListener('click', function () {
-      const value = parseInt(star.getAttribute('data-value'));
-      ratingInput.value = value;
+    if (!reviewForm) return;
 
-      // Fill in stars up to the clicked one, empty the rest
-      stars.forEach(function (s) {
-        const sValue = parseInt(s.getAttribute('data-value'));
-        s.textContent = sValue <= value ? '★' : '☆';
-      });
+    // ==========================
+    // GET ELEMENTS
+    // ==========================
+
+    const nameInput = document.getElementById("reviewerName");
+    const textInput = document.getElementById("reviewText");
+    const ratingInput = document.getElementById("ratingValue");
+    const ratingError = document.getElementById("ratingError");
+    const successMessage = document.getElementById("reviewSuccess");
+    const reviewsGrid = document.getElementById("reviewsGrid");
+
+    const stars = document.querySelectorAll("#starRating .star");
+
+    // ==========================
+    // LOAD SAVED REVIEWS
+    // ==========================
+
+    let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
+
+    reviews.forEach(function (review) {
+        createReviewCard(review, false);
     });
-  });
 
-});
+    updateSummary();
 
+    // ==========================
+    // STAR RATING
+    // ==========================
 
-// ============================================
-// REVIEW FORM VALIDATION
-// ============================================
+    stars.forEach(function (star) {
 
-document.addEventListener('DOMContentLoaded', function () {
+        star.addEventListener("click", function () {
 
-  const reviewForm = document.getElementById('reviewForm');
-  if (!reviewForm) return; // only run this on the reviews page
+            const value = parseInt(this.dataset.value);
 
-  reviewForm.addEventListener('submit', function (event) {
-    event.preventDefault(); // stop the page from reloading
+            ratingInput.value = value;
 
-    const nameInput = document.getElementById('reviewerName');
-    const textInput = document.getElementById('reviewText');
-    const ratingInput = document.getElementById('ratingValue');
-    const ratingError = document.getElementById('ratingError');
-    const successMessage = document.getElementById('reviewSuccess');
+            stars.forEach(function (s) {
 
-    let isValid = true;
+                if (parseInt(s.dataset.value) <= value) {
 
-    // Validate name
-    if (nameInput.value.trim().length < 2) {
-      nameInput.classList.add('is-invalid');
-      isValid = false;
-    } else {
-      nameInput.classList.remove('is-invalid');
+                    s.textContent = "★";
+
+                } else {
+
+                    s.textContent = "☆";
+
+                }
+
+            });
+
+            ratingError.style.display = "none";
+
+        });
+
+    });
+
+    // ==========================
+    // FORM SUBMISSION
+    // ==========================
+
+    reviewForm.addEventListener("submit", function (e) {
+
+        e.preventDefault();
+
+        let valid = true;
+
+        // NAME
+
+        if (nameInput.value.trim().length < 2) {
+
+            nameInput.classList.add("is-invalid");
+
+            valid = false;
+
+        } else {
+
+            nameInput.classList.remove("is-invalid");
+
+        }
+
+        // REVIEW
+
+        if (textInput.value.trim().length < 10) {
+
+            textInput.classList.add("is-invalid");
+
+            valid = false;
+
+        } else {
+
+            textInput.classList.remove("is-invalid");
+
+        }
+
+        // RATING
+
+        if (Number(ratingInput.value) === 0) {
+
+            ratingError.style.display = "block";
+
+            valid = false;
+
+        } else {
+
+            ratingError.style.display = "none";
+
+        }
+
+        if (!valid) return;
+
+        const review = {
+
+            name: nameInput.value.trim(),
+
+            text: textInput.value.trim(),
+
+            rating: Number(ratingInput.value)
+
+        };
+
+        // SAVE
+
+        reviews.unshift(review);
+
+        localStorage.setItem("reviews", JSON.stringify(reviews));
+
+        // DISPLAY
+
+        createReviewCard(review, true);
+
+        updateSummary();
+
+        // RESET FORM
+
+        reviewForm.reset();
+
+        ratingInput.value = 0;
+
+        stars.forEach(function (s) {
+
+            s.textContent = "☆";
+
+        });
+
+        successMessage.style.display = "block";
+
+        setTimeout(function () {
+
+            successMessage.style.display = "none";
+
+        }, 3000);
+
+    });
+
+    // ==========================
+    // CREATE REVIEW CARD
+    // ==========================
+
+    function createReviewCard(review, newest) {
+
+        let starHTML = "";
+
+        for (let i = 1; i <= 5; i++) {
+
+            starHTML += i <= review.rating ? "★" : "☆";
+
+        }
+
+        const col = document.createElement("div");
+
+        col.className = "col-md-6 col-lg-4";
+
+        col.innerHTML = `
+            <div class="card h-100 p-3">
+                <div class="card-body">
+                    <div class="mb-2 review-stars">${starHTML}</div>
+                    <p class="card-text">"${review.text}"</p>
+                    <p class="fw-semibold mb-0">${review.name}</p>
+                    <small class="text-muted">Just now</small>
+                </div>
+            </div>
+        `;
+
+        if (newest) {
+
+            reviewsGrid.prepend(col);
+
+        } else {
+
+            reviewsGrid.appendChild(col);
+
+        }
+
     }
 
-    // Validate review text
-    if (textInput.value.trim().length < 10) {
-      textInput.classList.add('is-invalid');
-      isValid = false;
-    } else {
-      textInput.classList.remove('is-invalid');
+    // ==========================
+    // UPDATE SUMMARY
+    // ==========================
+
+    function updateSummary() {
+
+        const totalReviews = 10 + reviews.length;
+
+        document.getElementById("reviewCount").textContent = totalReviews;
+
+        // Original reviews:
+        // 7 × ★★★★★ + 3 × ★★★★☆ = 48 stars
+
+        let totalStars = 48;
+
+        reviews.forEach(function (review) {
+
+            totalStars += review.rating;
+
+        });
+
+        const average = (totalStars / totalReviews).toFixed(1);
+
+        document.getElementById("averageRating").textContent = average;
+
     }
-
-    // Validate star rating
-    if (parseInt(ratingInput.value) === 0) {
-      ratingError.style.display = 'block';
-      isValid = false;
-    } else {
-      ratingError.style.display = 'none';
-    }
-
-    // If everything passed, show success message and reset the form
-    if (isValid) {
-      successMessage.style.display = 'block';
-      reviewForm.reset();
-
-      // Reset stars visually back to empty
-      document.querySelectorAll('#starRating .star').forEach(function (s) {
-        s.textContent = '☆';
-      });
-      ratingInput.value = 0;
-
-      // Hide the success message after a few seconds
-      setTimeout(function () {
-        successMessage.style.display = 'none';
-      }, 4000);
-    }
-  });
 
 });
