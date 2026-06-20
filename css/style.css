@@ -313,8 +313,6 @@ footer a:hover {
 
 /* ─────────────────────────────────────────────
    11. DARK MODE
-   Toggle by adding class "dark-mode" to <body>
-   via JavaScript.
    ───────────────────────────────────────────── */
 body.dark-mode {
   background-color: #1A120B;
@@ -330,12 +328,27 @@ body.dark-mode h6 {
   color: var(--bh-gold-light);
 }
 
+body.dark-mode p {
+  color: #F0E2CC;
+}
+
+/* Bootstrap's muted text class needs its own override */
+body.dark-mode .text-muted {
+  color: #C4A882 !important;
+}
+
 body.dark-mode .navbar {
   background-color: #0F0A06 !important;
 }
 
 body.dark-mode .card {
   background-color: #2A1D12;
+  color: #F0E2CC;
+}
+
+body.dark-mode .card-text,
+body.dark-mode .card-title,
+body.dark-mode .card-body {
   color: #F0E2CC;
 }
 
@@ -347,8 +360,16 @@ body.dark-mode .menu-item .fw-bold {
   color: var(--bh-gold-light);
 }
 
+body.dark-mode .section-title {
+  color: var(--bh-gold-light);
+}
+
 body.dark-mode footer {
   background-color: #0F0A06;
+}
+
+body.dark-mode footer a {
+  color: rgba(240, 226, 204, 0.75);
 }
 
 body.dark-mode .btn-outline-dark {
@@ -359,6 +380,28 @@ body.dark-mode .btn-outline-dark {
 body.dark-mode .btn-outline-dark:hover {
   background-color: var(--bh-cream) !important;
   color: var(--bh-brown) !important;
+}
+
+/* Form fields */
+body.dark-mode .form-control {
+  background-color: #2A1D12;
+  color: #F0E2CC;
+  border-color: #5C3A24;
+}
+
+body.dark-mode .form-control::placeholder {
+  color: #8A7560;
+}
+
+body.dark-mode .form-label {
+  color: #F0E2CC;
+}
+
+/* Alerts (your review success message) */
+body.dark-mode .alert-success {
+  background-color: #2A3D1F;
+  color: #D4E8B8;
+  border-color: #3D5C2C;
 }
 
 
@@ -374,4 +417,65 @@ body.dark-mode .btn-outline-dark:hover {
     padding: 6px 14px;
     font-size: 0.85rem;
   }
+}
+/* ─────────────────────────────────────────────
+   GALLERY PAGE
+   ───────────────────────────────────────────── */
+
+.gallery-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -2;
+  transition: background-image 0.5s ease-in-out;
+}
+
+.gallery-bg-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(26, 18, 11, 0.75);
+  z-index: -1;
+}
+
+.gallery-content {
+  position: relative;
+  z-index: 1;
+}
+
+.gallery-title {
+  font-family: var(--bh-font-heading);
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.gallery-row-img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: var(--bh-radius);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.gallery-row-img:hover {
+  transform: scale(1.03);
+}
+
+.gallery-row h3 {
+  color: var(--bh-gold-light);
+  font-family: var(--bh-font-heading);
+}
+
+.gallery-row p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1rem;
+  line-height: 1.7;
 }
