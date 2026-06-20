@@ -1,40 +1,246 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reviews — Barcelona House</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container">
 
-    <a class="navbar-brand" href="index.html">Barcelona House</a>
+  <!-- ───────────────── NAVBAR ───────────────── -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+      <a class="navbar-brand" href="index.html">Barcelona House</a>
 
-    <div class="collapse navbar-collapse" id="navMenu">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-        <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
-        <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
-        <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-        <li class="nav-item"><a class="nav-link" href="reviews.html">Reviews</a></li>
-        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-        <li class="nav-item"><a class="nav-link" href="reservations.html">Reserve a Table</a></li>
-      </ul>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
+          <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="reviews.html">Reviews</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="reservations.html">Reserve a Table</a></li>
+        </ul>
+        <button id="themeToggle" class="btn btn-outline-light ms-3">🌙</button>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- ───────────────── PAGE HEADER ───────────────── -->
+  <div class="container py-5">
+
+    <div class="text-center mb-5">
+      <p class="section-eyebrow">What our customers say</p>
+      <h1 class="section-title">Customer Reviews</h1>
+      <p class="text-muted">
+        Real feedback from the people who visit us every day. Have your own experience to share? Leave a review below.
+      </p>
+    </div>
+
+    <!-- ───────────────── REVIEW SUMMARY ───────────────── -->
+    <div class="row justify-content-center mb-5">
+      <div class="col-md-6 text-center">
+        <h2 class="display-5 fw-bold review-rating-summary">
+    <span id="averageRating">4.8</span> / 5
+</h2>
+        <div class="mb-2 review-stars" style="font-size: 1.3rem;">★★★★★</div>
+        <p class="text-muted">
+    Based on <span id="reviewCount">10</span> reviews
+</p>
+      </div>
+    </div>
+
+    <!-- ───────────────── REVIEWS GRID ───────────────── -->
+    <div class="row g-4" id="reviewsGrid">
+
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 p-3">
+          <div class="card-body">
+            <div class="mb-2 review-stars">★★★★★</div>
+            <p class="card-text">"Best café in the neighbourhood, hands down. Their cortado tastes exactly like the ones I had in Barcelona. The staff remember my order every time I walk in."</p>
+            <p class="fw-semibold mb-0">María González</p>
+            <small class="text-muted">Westlands, Nairobi</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 p-3">
+          <div class="card-body">
+            <div class="mb-2 review-stars">★★★★★</div>
+            <p class="card-text">"I work remotely and this is my go-to spot. Fast WiFi, great coffee, and the avocado toast is genuinely one of the best I've had in Nairobi."</p>
+            <p class="fw-semibold mb-0">Daniel Kimani</p>
+            <small class="text-muted">Kilimani, Nairobi</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 p-3">
+          <div class="card-body">
+            <div class="mb-2 review-stars">★★★★☆</div>
+            <p class="card-text">"Lovely atmosphere and the pastries are fresh every morning. Gets a bit busy on weekends so go early if you want a quiet table."</p>
+            <p class="fw-semibold mb-0">Sofia Martín</p>
+            <small class="text-muted">Lavington, Nairobi</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 p-3">
+          <div class="card-body">
+            <div class="mb-2 review-stars">★★★★★</div>
+            <p class="card-text">"The cold brew here is unmatched. I've tried almost every café in Westlands and Barcelona House is still my favourite by far."</p>
+            <p class="fw-semibold mb-0">James Mwangi</p>
+            <small class="text-muted">Parklands, Nairobi</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 p-3">
+          <div class="card-body">
+            <div class="mb-2 review-stars">★★★★★</div>
+            <p class="card-text">"Such a warm, welcoming space. It reminds me so much of the small cafés back home in Spain. The churros are a must-try."</p>
+            <p class="fw-semibold mb-0">Carla Ruiz</p>
+            <small class="text-muted">Karen, Nairobi</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 p-3">
+          <div class="card-body">
+            <div class="mb-2 review-stars">★★★★☆</div>
+            <p class="card-text">"Great coffee and friendly baristas. Only wish they had more outdoor seating, but overall a solid spot for a morning coffee."</p>
+            <p class="fw-semibold mb-0">Brian Otieno</p>
+            <small class="text-muted">Westlands, Nairobi</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 p-3">
+          <div class="card-body">
+            <div class="mb-2 review-stars">★★★★★</div>
+            <p class="card-text">"I had my book club meeting here last week and everyone loved it. The matcha latte was a surprise favourite among us."</p>
+            <p class="fw-semibold mb-0">Amara Wanjiru</p>
+            <small class="text-muted">Kileleshwa, Nairobi</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 p-3">
+          <div class="card-body">
+            <div class="mb-2 review-stars">★★★★★</div>
+            <p class="card-text">"Authentic flavours and a cozy vibe. The owner clearly knows their coffee — you can tell from the quality of every cup."</p>
+            <p class="fw-semibold mb-0">Pablo Fernández</p>
+            <small class="text-muted">Westlands, Nairobi</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 p-3">
+          <div class="card-body">
+            <div class="mb-2 review-stars">★★★★☆</div>
+            <p class="card-text">"Came here for a birthday treat and the cheesecake did not disappoint. Service was a little slow during the lunch rush but worth the wait."</p>
+            <p class="fw-semibold mb-0">Grace Achieng</p>
+            <small class="text-muted">Kilimani, Nairobi</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 p-3">
+          <div class="card-body">
+            <div class="mb-2 review-stars">★★★★★</div>
+            <p class="card-text">"Hands down my favourite café in the city. The staff are so friendly and the espresso is rich without being bitter. Highly recommend."</p>
+            <p class="fw-semibold mb-0">Lucas Herrera</p>
+            <small class="text-muted">Lavington, Nairobi</small>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ───────────────── WRITE A REVIEW FORM ───────────────── -->
+    <div class="row justify-content-center mt-5">
+      <div class="col-lg-7">
+
+        <div class="card p-4 p-md-5">
+          <h2 class="section-title text-center mb-4">Leave a Review</h2>
+
+          <form id="reviewForm" novalidate>
+
+            <!-- Name -->
+            <div class="mb-3">
+              <label for="reviewerName" class="form-label">Your Name</label>
+              <input type="text" class="form-control" id="reviewerName" required minlength="2">
+              <div class="invalid-feedback">Please enter your name (at least 2 characters).</div>
+            </div>
+
+            <!-- Star rating -->
+            <div class="mb-3">
+              <label class="form-label d-block">Your Rating</label>
+              <div id="starRating">
+                <span class="star" data-value="1">☆</span>
+                <span class="star" data-value="2">☆</span>
+                <span class="star" data-value="3">☆</span>
+                <span class="star" data-value="4">☆</span>
+                <span class="star" data-value="5">☆</span>
+              </div>
+              <input type="hidden" id="ratingValue" value="0">
+              <div id="ratingError" class="text-danger small mt-1" style="display: none;">
+                Please select a star rating.
+              </div>
+            </div>
+
+            <!-- Review text -->
+            <div class="mb-4">
+              <label for="reviewText" class="form-label">Your Review</label>
+              <textarea class="form-control" id="reviewText" rows="4" required minlength="10"></textarea>
+              <div class="invalid-feedback">Please write at least 10 characters.</div>
+            </div>
+
+            <div class="text-center">
+              <button type="submit" class="btn btn-dark px-5">Submit Review</button>
+            </div>
+
+            <!-- Success message -->
+            <div id="reviewSuccess" class="alert alert-success mt-4 text-center" style="display: none;">
+              Thank you! Your review has been submitted.
+            </div>
+
+          </form>
+        </div>
+
+      </div>
     </div>
 
   </div>
-  <button id="themeToggle" class="btn btn-outline-dark ms-3">🌙</button>
-</nav>
-    
-    
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  
+
+ 
+  <!-- Custom JS -->
+  <script src="js/main.js"></script>
+
 </body>
 </html>
