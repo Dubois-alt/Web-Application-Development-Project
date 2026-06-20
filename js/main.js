@@ -61,3 +61,95 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
 });
+
+// ============================================
+// STAR RATING PICKER (Reviews page)
+// ============================================
+
+document.addEventListener('DOMContentLoaded', function () {
+
+  const starRating = document.getElementById('starRating');
+  if (!starRating) return; // only run this on the reviews page
+
+  const stars = starRating.querySelectorAll('.star');
+  const ratingInput = document.getElementById('ratingValue');
+
+  stars.forEach(function (star) {
+    star.addEventListener('click', function () {
+      const value = parseInt(star.getAttribute('data-value'));
+      ratingInput.value = value;
+
+      // Fill in stars up to the clicked one, empty the rest
+      stars.forEach(function (s) {
+        const sValue = parseInt(s.getAttribute('data-value'));
+        s.textContent = sValue <= value ? '★' : '☆';
+      });
+    });
+  });
+
+});
+
+
+// ============================================
+// REVIEW FORM VALIDATION
+// ============================================
+
+document.addEventListener('DOMContentLoaded', function () {
+
+  const reviewForm = document.getElementById('reviewForm');
+  if (!reviewForm) return; // only run this on the reviews page
+
+  reviewForm.addEventListener('submit', function (event) {
+    event.preventDefault(); // stop the page from reloading
+
+    const nameInput = document.getElementById('reviewerName');
+    const textInput = document.getElementById('reviewText');
+    const ratingInput = document.getElementById('ratingValue');
+    const ratingError = document.getElementById('ratingError');
+    const successMessage = document.getElementById('reviewSuccess');
+
+    let isValid = true;
+
+    // Validate name
+    if (nameInput.value.trim().length < 2) {
+      nameInput.classList.add('is-invalid');
+      isValid = false;
+    } else {
+      nameInput.classList.remove('is-invalid');
+    }
+
+    // Validate review text
+    if (textInput.value.trim().length < 10) {
+      textInput.classList.add('is-invalid');
+      isValid = false;
+    } else {
+      textInput.classList.remove('is-invalid');
+    }
+
+    // Validate star rating
+    if (parseInt(ratingInput.value) === 0) {
+      ratingError.style.display = 'block';
+      isValid = false;
+    } else {
+      ratingError.style.display = 'none';
+    }
+
+    // If everything passed, show success message and reset the form
+    if (isValid) {
+      successMessage.style.display = 'block';
+      reviewForm.reset();
+
+      // Reset stars visually back to empty
+      document.querySelectorAll('#starRating .star').forEach(function (s) {
+        s.textContent = '☆';
+      });
+      ratingInput.value = 0;
+
+      // Hide the success message after a few seconds
+      setTimeout(function () {
+        successMessage.style.display = 'none';
+      }, 4000);
+    }
+  });
+
+});
