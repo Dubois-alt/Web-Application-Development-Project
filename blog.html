@@ -113,7 +113,7 @@
             <div class="card h-100">
               <img src="images/oat milk to macha latte.png" class="card-img-top" alt="Matcha latte with oat milk">
               <div class="card-body">
-                <h5 class="card-title">Why We Switched to Oat Milk for Our Matcha Latte</h5>
+                <h5 class="card-title">Why We Switched From Oat Milk to Our Matcha Latte</h5>
                 <p class="card-text">
                   After months of customer requests and our own taste tests, we made oat milk the default in our
                   matcha latte. Its natural sweetness pairs better with ceremonial-grade matcha than dairy does,
@@ -131,8 +131,7 @@
                 <h5 class="card-title">Barcelona House Turns 2: A Look Back at Our First Open Mic Night</h5>
                 <p class="card-text">
                   Two years ago we hosted our very first open mic with a handful of nervous performers and a dozen
-                  curious customers. Today it's a monthly tradition that fills the café. We look back at how it
-                  started and what it's grown into.
+                  curious customers. Today it's a monthly tradition that fills the café.
                 </p>
               </div>
             </div>
@@ -164,7 +163,7 @@
           <h5 class="card-title mb-3">Upcoming Events</h5>
 
           <div class="mb-3">
-            <p class="text-muted mb-0 small">FRI, 26 JUNE</p>
+            <p class="text-muted mb-0 small">FRI, 3 JULY</p>
             <p class="fw-semibold mb-0">Open Mic Night</p>
             <p class="text-muted small">7:00 PM – 9:30 PM</p>
           </div>
@@ -197,16 +196,28 @@
           </p>
 
           <form id="mugClubForm" novalidate>
-            <div class="mb-3">
-              <input type="email" class="form-control" id="mugClubEmail" placeholder="Your email address" required>
-              <div class="invalid-feedback">Please enter a valid email address.</div>
-            </div>
-            <button type="submit" class="btn btn-dark w-100">Join the Mug Club</button>
+  <div class="mb-3">
+    <input type="text" class="form-control" id="mugClubName" placeholder="Your name" required minlength="2">
+    <div class="invalid-feedback">Please enter your name.</div>
+  </div>
+  <div class="mb-3">
+    <input type="email" class="form-control" id="mugClubEmail" placeholder="Your email address" required>
+    <div class="invalid-feedback">Please enter a valid email address.</div>
+  </div>
+  <button type="submit" class="btn btn-dark w-100">Join the Mug Club</button>
 
-            <div id="mugClubSuccess" class="alert alert-success mt-3 text-center mb-0" style="display: none;">
-              Welcome to the Mug Club! Check your inbox for a confirmation.
-            </div>
-          </form>
+  <div id="mugClubSuccess" class="alert alert-success mt-3 text-center mb-0" style="display: none;">
+    Welcome to the Mug Club! Check your inbox for a confirmation.
+  </div>
+</form>
+<!-- Mug Club Members List -->
+<div class="card p-4 mt-4">
+  <h5 class="card-title mb-3">Mug Club Members</h5>
+  <p class="text-muted small">Join above and your name will appear here.</p>
+  <ul id="membersList" class="list-unstyled mb-0">
+    <!-- Member names will be added here by JavaScript -->
+  </ul>
+</div>
         </div>
 
       </div>

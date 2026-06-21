@@ -291,28 +291,68 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 });
-// MUG CLUB NEWSLETTER FORM VALIDATION
+// ============================================
+// MUG CLUB SIGNUP + MEMBERS LIST
+// ============================================
+
 document.addEventListener('DOMContentLoaded', function () {
 
   const mugClubForm = document.getElementById('mugClubForm');
-  if (!mugClubForm) return;
+  if (!mugClubForm) return; // only run on the blog page
+
+  const membersList = document.getElementById('membersList');
+
+  // Load existing members from localStorage (or start with an empty list)
+  let members = JSON.parse(localStorage.getItem('mugClubMembers')) || [];
+
+  // Show any members already saved from a previous visit
+  members.forEach(function (member) {
+    addMemberToList(member.name, member.number, false);
+  });
 
   mugClubForm.addEventListener('submit', function (event) {
     event.preventDefault();
 
+    const nameInput = document.getElementById('mugClubName');
     const emailInput = document.getElementById('mugClubEmail');
     const successMessage = document.getElementById('mugClubSuccess');
 
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const isValidEmail = emailPattern.test(emailInput.value.trim());
+    let isValid = true;
 
-    if (!isValidEmail) {
+    // Validate name
+    if (nameInput.value.trim().length < 2) {
+      nameInput.classList.add('is-invalid');
+      isValid = false;
+    } else {
+      nameInput.classList.remove('is-invalid');
+    }
+
+    // Validate email format
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(emailInput.value.trim())) {
       emailInput.classList.add('is-invalid');
+      isValid = false;
+    } else {
+      emailInput.classList.remove('is-invalid');
+    }
+
+    if (!isValid) {
       successMessage.style.display = 'none';
       return;
     }
 
-    emailInput.classList.remove('is-invalid');
+    // Work out this member's number (starting at 1, continuing from however many already joined)
+    const memberNumber = members.length + 1;
+    const memberName = nameInput.value.trim();
+
+    // Save to our members array and to localStorage
+    members.push({ name: memberName, number: memberNumber });
+    localStorage.setItem('mugClubMembers', JSON.stringify(members));
+
+    // Add to the visible list immediately
+    addMemberToList(memberName, memberNumber, true);
+
+    // Show success message and reset the form
     successMessage.style.display = 'block';
     mugClubForm.reset();
 
@@ -320,5 +360,18 @@ document.addEventListener('DOMContentLoaded', function () {
       successMessage.style.display = 'none';
     }, 4000);
   });
+
+  // Helper function: adds one member's name to the visible <ul> list
+  function addMemberToList(name, number, isNew) {
+    const listItem = document.createElement('li');
+    listItem.className = 'mb-2 pb-2 border-bottom';
+    listItem.innerHTML = `<strong>${name}</strong> <span class="text-muted small">— Mug Club Member #${number}</span>`;
+
+    if (isNew) {
+      membersList.prepend(listItem); // newest member appears at the top
+    } else {
+      membersList.appendChild(listItem); // older members load in order
+    }
+  }
 
 });
