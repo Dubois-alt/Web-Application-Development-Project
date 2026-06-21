@@ -1,21 +1,16 @@
-// ============================================
-// MENU CATEGORY FILTER
-// ============================================
 
-document.addEventListener('DOMContentLoaded', function () {
+// REUSABLE CATEGORY FILTER
 
-  
-  const filterButtons = document.querySelectorAll('.filter-btn');
-  const menuItems = document.querySelectorAll('.menu-item');
+function setupFilter(buttonContainerId, itemClass) {
+  const container = document.getElementById(buttonContainerId);
+  if (!container) return; // this filter group isn't on the current page
 
-  
-  if (filterButtons.length === 0) return;
+  const filterButtons = container.querySelectorAll('.filter-btn');
+  const items = document.querySelectorAll('.' + itemClass);
 
-  
   filterButtons.forEach(function (button) {
     button.addEventListener('click', function () {
 
-      
       filterButtons.forEach(function (btn) {
         btn.classList.remove('active', 'btn-dark');
         btn.classList.add('btn-outline-dark');
@@ -23,10 +18,9 @@ document.addEventListener('DOMContentLoaded', function () {
       button.classList.add('active', 'btn-dark');
       button.classList.remove('btn-outline-dark');
 
-      
       const selectedCategory = button.getAttribute('data-filter');
 
-            menuItems.forEach(function (item) {
+      items.forEach(function (item) {
         const itemCategory = item.getAttribute('data-category');
 
         if (selectedCategory === 'all' || itemCategory === selectedCategory) {
@@ -38,12 +32,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
     });
   });
+}
 
+document.addEventListener('DOMContentLoaded', function () {
+  setupFilter('filterButtons', 'menu-item');   // menu page
+  setupFilter('blogFilterButtons', 'blog-item'); // blog page
 });
-// ============================================
-// DARK / LIGHT MODE TOGGLE
-// ============================================
 
+
+// DARK / LIGHT MODE TOGGLE
 document.addEventListener('DOMContentLoaded', function () {
 
   const themeToggle = document.getElementById('themeToggle');
@@ -65,17 +62,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    // ==========================
+    
     // CHECK IF WE ARE ON REVIEWS PAGE
-    // ==========================
+   
 
     const reviewForm = document.getElementById("reviewForm");
 
     if (!reviewForm) return;
 
-    // ==========================
+    
     // GET ELEMENTS
-    // ==========================
+
 
     const nameInput = document.getElementById("reviewerName");
     const textInput = document.getElementById("reviewText");
@@ -86,9 +83,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const stars = document.querySelectorAll("#starRating .star");
 
-    // ==========================
+   
     // LOAD SAVED REVIEWS
-    // ==========================
+    
 
     let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
 
@@ -98,11 +95,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     updateSummary();
 
-    // ==========================
+  
     // STAR RATING
-    // ==========================
-
-    stars.forEach(function (star) {
+      stars.forEach(function (star) {
 
         star.addEventListener("click", function () {
 
@@ -130,9 +125,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     });
 
-    // ==========================
+    
     // FORM SUBMISSION
-    // ==========================
 
     reviewForm.addEventListener("submit", function (e) {
 
@@ -228,9 +222,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     });
 
-    // ==========================
+    
     // CREATE REVIEW CARD
-    // ==========================
+    
 
     function createReviewCard(review, newest) {
 
@@ -269,9 +263,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
-    // ==========================
+  
     // UPDATE SUMMARY
-    // ==========================
+   
 
     function updateSummary() {
 
@@ -295,5 +289,36 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("averageRating").textContent = average;
 
     }
+
+});
+// MUG CLUB NEWSLETTER FORM VALIDATION
+document.addEventListener('DOMContentLoaded', function () {
+
+  const mugClubForm = document.getElementById('mugClubForm');
+  if (!mugClubForm) return;
+
+  mugClubForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const emailInput = document.getElementById('mugClubEmail');
+    const successMessage = document.getElementById('mugClubSuccess');
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const isValidEmail = emailPattern.test(emailInput.value.trim());
+
+    if (!isValidEmail) {
+      emailInput.classList.add('is-invalid');
+      successMessage.style.display = 'none';
+      return;
+    }
+
+    emailInput.classList.remove('is-invalid');
+    successMessage.style.display = 'block';
+    mugClubForm.reset();
+
+    setTimeout(function () {
+      successMessage.style.display = 'none';
+    }, 4000);
+  });
 
 });
