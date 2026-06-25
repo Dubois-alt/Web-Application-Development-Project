@@ -1,7 +1,6 @@
-// ============================================
+
 // REUSABLE CATEGORY FILTER
-// Works for the menu page and blog page
-// ============================================
+
 
 function setupFilter(buttonContainerId, itemClass) {
   const container = document.getElementById(buttonContainerId);
@@ -42,9 +41,9 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-// ============================================
+
 // DARK / LIGHT MODE TOGGLE
-// ============================================
+
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -64,14 +63,10 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-// ============================================
 // REUSABLE FORM VALIDATION
-// One shared engine used by every form on the
-// site (Contact, Mug Club, and partly Reviews)
-// ============================================
 
-// Checks a single input against a set of rules.
-// Adds/removes the "is-invalid" class for Bootstrap's red styling.
+
+
 function validateField(input, rules) {
   const value = input.value.trim();
   let isValid = true;
@@ -97,11 +92,10 @@ function validateField(input, rules) {
   return isValid;
 }
 
-// Wires up a whole form: checks every field listed in fieldRules,
-// and only runs onSuccess(form) if every single field passes.
+
 function setupFormValidation(formId, fieldRules, onSuccess) {
   const form = document.getElementById(formId);
-  if (!form) return; // this form isn't on the current page
+  if (!form) return; 
 
   form.addEventListener('submit', function (event) {
     event.preventDefault();
@@ -122,7 +116,7 @@ function setupFormValidation(formId, fieldRules, onSuccess) {
   });
 }
 
-// Shared helper: shows a success alert, then hides it after a few seconds
+
 function showSuccessMessage(elementId, duration) {
   const el = document.getElementById(elementId);
   if (!el) return;
@@ -135,9 +129,9 @@ function showSuccessMessage(elementId, duration) {
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 
-// ============================================
+
 // CONTACT FORM
-// ============================================
+
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -153,9 +147,9 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-// ============================================
+
 // MUG CLUB SIGNUP + MEMBERS LIST
-// ============================================
+
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -206,11 +200,9 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-// ============================================
+
 // REVIEWS PAGE
-// (Star rating is a custom input, so it gets
-// its own check alongside the shared validator)
-// ============================================
+
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -222,7 +214,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const reviewsGrid = document.getElementById('reviewsGrid');
   const stars = document.querySelectorAll('#starRating .star');
 
-  // Load saved reviews from localStorage
+  
   let reviews = JSON.parse(localStorage.getItem('reviews')) || [];
 
   reviews.forEach(function (review) {
