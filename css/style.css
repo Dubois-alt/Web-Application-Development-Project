@@ -479,3 +479,28 @@ body.dark-mode .alert-success {
   font-size: 1rem;
   line-height: 1.7;
 }
+/* ─────────────────────────────────────────────
+   HOMEPAGE SECTION BACKGROUNDS
+   ───────────────────────────────────────────── */
+
+.home-section-light {
+  background-color: var(--bh-white);
+}
+
+.home-section-muted {
+  background-color: var(--bh-cream-dark);
+}
+
+/* Dark mode overrides for homepage sections */
+body.dark-mode .home-section-light {
+  background-color: #1A120B;
+}
+
+body.dark-mode .home-section-muted {
+  background-color: #2A1D12;
+}
+
+/* The reservations CTA strip needs its own dark override */
+body.dark-mode .reservations-cta {
+  background-color: #0F0A06;
+}
