@@ -147,6 +147,15 @@ a:hover {
   color: var(--bh-gold);
 }
 
+/* Logo image in the navbar */
+.navbar-logo {
+  height: 65px;
+  width: 65px;
+  object-fit: contain;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
 
 /*==================================================
   4. BUTTONS
