@@ -1,9 +1,9 @@
 /* =============================================
-   BARCELONA HOUSE — Custom Stylesheet
+   BARCELONA HOUSE — style.css
    Theme: Spanish / Mediterranean coffee house
 
    Colour palette:
-     Espresso brown : #3B2417 (primary dark / navbar)
+     Espresso brown : #3B2417 (primary / navbar)
      Cream          : #FBF3E7 (background)
      Terracotta     : #A8442C (accent / prices / buttons)
      Gold ochre     : #D4A017 (secondary accent)
@@ -11,40 +11,66 @@
    Fonts:
      Headings : Playfair Display
      Body     : Inter
+
+   SECTIONS:
+    1.  CSS Variables
+    2.  Base / Reset
+    3.  Navbar
+    4.  Buttons
+    5.  Hero Section
+    6.  Section Headings
+    7.  General Cards
+    8.  Forms
+    9.  Footer
+   10.  Menu Page
+   11.  Blog Page
+   12.  Gallery Page
+   13.  Reviews Page
+   14.  Homepage Sections
+   15.  Dark Mode
+   16.  Responsive Tweaks
    ============================================= */
 
 
-/* ─────────────────────────────────────────────
-   1. CSS VARIABLES
-   Change these once and the whole site updates.
-   ───────────────────────────────────────────── */
-:root {
-  --bh-brown:       #3B2417;
-  --bh-brown-mid:   #5C3A24;
-  --bh-cream:       #FBF3E7;
-  --bh-cream-dark:  #F0E2CC;
-  --bh-gold:        #D4A017;
-  --bh-gold-light:  #E8C158;
-  --bh-terracotta:  #A8442C;
-  --bh-terracotta-light: #C25C3F;
-  --bh-white:       #FFFFFF;
-  --bh-text-dark:   #2B2118;
-  --bh-text-muted:  #7A6552;
+/*==================================================
+  1. CSS VARIABLES
+==================================================*/
 
+:root {
+  /* Colours */
+  --bh-brown:            #3B2417;
+  --bh-brown-mid:        #5C3A24;
+  --bh-cream:            #FBF3E7;
+  --bh-cream-dark:       #F0E2CC;
+  --bh-gold:             #D4A017;
+  --bh-gold-light:       #E8C158;
+  --bh-terracotta:       #A8442C;
+  --bh-terracotta-light: #C25C3F;
+  --bh-white:            #FFFFFF;
+  --bh-text-dark:        #2B2118;
+  --bh-text-muted:       #7A6552;
+
+  /* Typography */
   --bh-font-heading: 'Playfair Display', Georgia, serif;
   --bh-font-body:    'Inter', Arial, sans-serif;
 
+  /* Spacing & decoration */
   --bh-radius:    12px;
   --bh-radius-sm: 6px;
   --bh-shadow:    0 2px 10px rgba(59, 36, 23, 0.10);
 }
 
 
-/* ─────────────────────────────────────────────
-   2. BASE / RESET
-   ───────────────────────────────────────────── */
+/*==================================================
+  2. BASE / RESET
+==================================================*/
+
 * {
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -55,10 +81,6 @@ body {
   line-height: 1.7;
   margin: 0;
   padding: 0;
-}
-
-html {
-  scroll-behavior: smooth;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -75,11 +97,10 @@ a:hover {
 }
 
 
-/* ─────────────────────────────────────────────
-   3. NAVBAR
-   Targets the real Bootstrap classes you're
-   using: navbar, navbar-dark, bg-dark
-   ───────────────────────────────────────────── */
+/*==================================================
+  3. NAVBAR
+==================================================*/
+
 .navbar {
   background-color: var(--bh-brown) !important;
   padding: 14px 0;
@@ -107,7 +128,7 @@ a:hover {
   background-color: rgba(212, 160, 23, 0.12);
 }
 
-/* Dark mode toggle button in the navbar */
+/* Dark mode toggle button */
 #themeToggle {
   border-color: rgba(212, 160, 23, 0.5);
   color: var(--bh-gold);
@@ -127,9 +148,12 @@ a:hover {
 }
 
 
-/* ─────────────────────────────────────────────
-   4. BUTTONS
-   ───────────────────────────────────────────── */
+/*==================================================
+  4. BUTTONS
+  Overrides Bootstrap's btn-dark and btn-outline-dark
+  with the Barcelona House terracotta/brown palette.
+==================================================*/
+
 .btn-dark {
   background-color: var(--bh-terracotta) !important;
   border-color: var(--bh-terracotta) !important;
@@ -153,17 +177,18 @@ a:hover {
 }
 
 
-/* ─────────────────────────────────────────────
-   5. HERO SECTION
-   (Use on index.html — adjust class names if
-   yours differ)
-   ───────────────────────────────────────────── */
+/*==================================================
+  5. HERO SECTION
+  Used on index.html.
+  Requires images/hero-bg.jpg to exist.
+==================================================*/
+
 .hero {
   background: linear-gradient(
       rgba(43, 22, 12, 0.65),
       rgba(43, 22, 12, 0.65)
     ),
-    url('../images/hero-bg.jpg') center/cover no-repeat;
+    url('../images/ambience/background ambience.png') center/cover no-repeat;
   min-height: 80vh;
   display: flex;
   align-items: center;
@@ -172,15 +197,15 @@ a:hover {
   text-align: center;
 }
 
-.hero h1 {
+.hero-title {
   font-family: var(--bh-font-heading);
-  font-size: clamp(2.2rem, 6vw, 4rem);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
   color: var(--bh-white);
   line-height: 1.15;
   margin-bottom: 20px;
 }
 
-.hero p {
+.hero-sub {
   font-size: 1.1rem;
   color: rgba(255, 255, 255, 0.85);
   max-width: 500px;
@@ -188,9 +213,13 @@ a:hover {
 }
 
 
-/* ─────────────────────────────────────────────
-   6. SECTION HEADINGS (shared across pages)
-   ───────────────────────────────────────────── */
+/*==================================================
+  6. SECTION HEADINGS
+  Shared across all pages.
+  .section-eyebrow — small uppercase label above heading
+  .section-title   — the main heading for each section
+==================================================*/
+
 .section-eyebrow {
   font-size: 0.8rem;
   font-weight: 600;
@@ -208,15 +237,89 @@ a:hover {
 }
 
 
-/* ─────────────────────────────────────────────
-   7. MENU PAGE STYLES
-   ───────────────────────────────────────────── */
+/*==================================================
+  7. GENERAL CARDS
+  Applies to all .card elements across the site
+  (about page, reviews, blog, contact, etc).
+  Menu cards have additional overrides in Section 10.
+==================================================*/
+
+.card {
+  border: none;
+  border-radius: var(--bh-radius);
+  box-shadow: var(--bh-shadow);
+}
+
+.card-title {
+  font-family: var(--bh-font-heading);
+  color: var(--bh-brown);
+}
+
+
+/*==================================================
+  8. FORMS
+  Shared styles for all form inputs across the site:
+  contact.html, reservations.html, reviews.html,
+  and blog.html (Mug Club).
+==================================================*/
+
+.form-control:focus {
+  border-color: var(--bh-terracotta);
+  box-shadow: 0 0 0 0.2rem rgba(168, 68, 44, 0.15);
+}
+
+.form-label {
+  font-weight: 500;
+  color: var(--bh-brown);
+}
+
+.invalid-feedback {
+  color: var(--bh-terracotta);
+}
+
+
+/*==================================================
+  9. FOOTER
+  Shared footer used on every page.
+==================================================*/
+
+footer {
+  background-color: var(--bh-brown);
+  color: var(--bh-cream);
+  padding: 40px 0;
+}
+
+footer h5,
+footer h6 {
+  color: var(--bh-gold);
+}
+
+footer a {
+  color: rgba(251, 243, 231, 0.75);
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: var(--bh-gold);
+}
+
+footer hr {
+  border-color: rgba(251, 243, 231, 0.15);
+}
+
+
+/*==================================================
+  10. MENU PAGE
+==================================================*/
+
+/* Filter buttons (pill shape) */
 .filter-btn {
   font-weight: 500;
   border-radius: 20px;
   padding: 8px 20px;
 }
 
+/* Menu item cards */
 .menu-item .card {
   border: none;
   box-shadow: var(--bh-shadow);
@@ -247,78 +350,151 @@ a:hover {
   font-size: 0.9rem;
 }
 
-.menu-item .fw-bold {
-  color: var(--bh-terracotta); /* price colour, matches brand accent */
-}
-
-
-/* ─────────────────────────────────────────────
-   8. GENERAL CARDS
-   (about page team cards, testimonial cards,
-   highlight cards — anything using .card
-   outside the menu grid)
-   ───────────────────────────────────────────── */
-.card {
-  border: none;
-  border-radius: var(--bh-radius);
-  box-shadow: var(--bh-shadow);
-}
-
-.card-title {
-  font-family: var(--bh-font-heading);
-  color: var(--bh-brown);
-}
-
-
-/* ─────────────────────────────────────────────
-   9. FOOTER
-   ───────────────────────────────────────────── */
-footer {
-  background-color: var(--bh-brown);
-  color: var(--bh-cream);
-  padding: 40px 0;
-}
-
-footer h5, footer h6 {
-  color: var(--bh-gold);
-}
-
-footer a {
-  color: rgba(251, 243, 231, 0.75);
-  text-decoration: none;
-}
-
-footer a:hover {
-  color: var(--bh-gold);
-}
-
-
-/* ─────────────────────────────────────────────
-   10. FORMS (contact / reservations)
-   ───────────────────────────────────────────── */
-.form-control:focus {
-  border-color: var(--bh-terracotta);
-  box-shadow: 0 0 0 0.2rem rgba(168, 68, 44, 0.15);
-}
-
-.form-label {
-  font-weight: 500;
-  color: var(--bh-brown);
-}
-
-.invalid-feedback {
+/* Price text colour */
+.menu-item .fw-bold,
+.home-price {
   color: var(--bh-terracotta);
 }
 
 
-/* ─────────────────────────────────────────────
-   11. DARK MODE
-   ───────────────────────────────────────────── */
+/*==================================================
+  11. BLOG PAGE
+==================================================*/
+
+/* Blog post card image height */
+.blog-item .card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Reviews page star colour */
+.review-stars {
+  color: var(--bh-gold);
+  font-size: 1.1rem;
+}
+
+/* Review average rating summary number */
+.review-rating-summary {
+  color: var(--bh-terracotta);
+}
+
+/* Star rating picker in the review form */
+#starRating {
+  font-size: 1.8rem;
+  cursor: pointer;
+  letter-spacing: 4px;
+  color: var(--bh-gold);
+}
+
+
+/*==================================================
+  12. GALLERY PAGE
+==================================================*/
+
+/* Fixed full-screen background layer */
+.gallery-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -2;
+  transition: background-image 0.4s ease-in-out;
+}
+
+/* Dark overlay on top of the background */
+.gallery-bg-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(26, 18, 11, 0.75);
+  z-index: -1;
+}
+
+/* Page content sits above both background layers */
+.gallery-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Page title */
+.gallery-title {
+  font-family: var(--bh-font-heading);
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+
+/* Each row thumbnail image */
+.gallery-row-img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: var(--bh-radius);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover handled in JS — CSS provides the transition */
+.gallery-row-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Row headings and text appear white over dark overlay */
+.gallery-row h3 {
+  color: var(--bh-gold-light);
+  font-family: var(--bh-font-heading);
+}
+
+.gallery-row p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+
+/*==================================================
+  13. REVIEWS PAGE
+==================================================*/
+
+/* Average rating summary number */
+.review-rating-summary {
+  color: var(--bh-terracotta);
+}
+
+
+/*==================================================
+  14. HOMEPAGE SECTION BACKGROUNDS
+==================================================*/
+
+.home-section-light {
+  background-color: var(--bh-white);
+}
+
+.home-section-muted {
+  background-color: var(--bh-cream-dark);
+}
+
+.reservations-cta {
+  background-color: var(--bh-cream-dark);
+}
+
+
+/*==================================================
+  15. DARK MODE
+==================================================*/
+
 body.dark-mode {
   background-color: #1A120B;
   color: #F0E2CC;
 }
 
+/* Headings */
 body.dark-mode h1,
 body.dark-mode h2,
 body.dark-mode h3,
@@ -328,19 +504,27 @@ body.dark-mode h6 {
   color: var(--bh-gold-light);
 }
 
+/* Body text */
 body.dark-mode p {
   color: #F0E2CC;
 }
 
-/* Bootstrap's muted text class needs its own override */
+/* Bootstrap muted text */
 body.dark-mode .text-muted {
   color: #C4A882 !important;
 }
 
+/* Section titles */
+body.dark-mode .section-title {
+  color: var(--bh-gold-light);
+}
+
+/* Navbar */
 body.dark-mode .navbar {
   background-color: #0F0A06 !important;
 }
 
+/* Cards */
 body.dark-mode .card {
   background-color: #2A1D12;
   color: #F0E2CC;
@@ -352,26 +536,17 @@ body.dark-mode .card-body {
   color: #F0E2CC;
 }
 
+/* Menu card specifics */
 body.dark-mode .menu-item .card-text {
   color: #C4A882;
 }
 
-body.dark-mode .menu-item .fw-bold {
+body.dark-mode .menu-item .fw-bold,
+body.dark-mode .home-price {
   color: var(--bh-gold-light);
 }
 
-body.dark-mode .section-title {
-  color: var(--bh-gold-light);
-}
-
-body.dark-mode footer {
-  background-color: #0F0A06;
-}
-
-body.dark-mode footer a {
-  color: rgba(240, 226, 204, 0.75);
-}
-
+/* Buttons */
 body.dark-mode .btn-outline-dark {
   color: var(--bh-cream) !important;
   border-color: var(--bh-cream) !important;
@@ -382,7 +557,7 @@ body.dark-mode .btn-outline-dark:hover {
   color: var(--bh-brown) !important;
 }
 
-/* Form fields */
+/* Forms */
 body.dark-mode .form-control {
   background-color: #2A1D12;
   color: #F0E2CC;
@@ -397,101 +572,23 @@ body.dark-mode .form-label {
   color: #F0E2CC;
 }
 
-/* Alerts (your review success message) */
+/* Success alerts */
 body.dark-mode .alert-success {
   background-color: #2A3D1F;
   color: #D4E8B8;
   border-color: #3D5C2C;
 }
 
-
-/* ─────────────────────────────────────────────
-   12. RESPONSIVE TWEAKS
-   ───────────────────────────────────────────── */
-@media (max-width: 576px) {
-  .hero h1 {
-    font-size: 2.2rem;
-  }
-
-  .filter-btn {
-    padding: 6px 14px;
-    font-size: 0.85rem;
-  }
-}
-/* ─────────────────────────────────────────────
-   GALLERY PAGE
-   ───────────────────────────────────────────── */
-
-.gallery-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  z-index: -2;
-  transition: background-image 0.5s ease-in-out;
+/* Footer */
+body.dark-mode footer {
+  background-color: #0F0A06;
 }
 
-.gallery-bg-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(26, 18, 11, 0.75);
-  z-index: -1;
+body.dark-mode footer a {
+  color: rgba(240, 226, 204, 0.75);
 }
 
-.gallery-content {
-  position: relative;
-  z-index: 1;
-}
-
-.gallery-title {
-  font-family: var(--bh-font-heading);
-  font-size: clamp(2rem, 5vw, 3rem);
-}
-
-.gallery-row-img {
-  width: 100%;
-  height: 260px;
-  object-fit: cover;
-  border-radius: var(--bh-radius);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.gallery-row-img:hover {
-  transform: scale(1.03);
-}
-
-.gallery-row h3 {
-  color: var(--bh-gold-light);
-  font-family: var(--bh-font-heading);
-}
-
-.gallery-row p {
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 1rem;
-  line-height: 1.7;
-}
-/* ─────────────────────────────────────────────
-   HOMEPAGE SECTION BACKGROUNDS
-   ───────────────────────────────────────────── */
-
-.home-section-light {
-  background-color: var(--bh-white);
-}
-
-.home-section-muted {
-  background-color: var(--bh-cream-dark);
-}
-
-/* Dark mode overrides for homepage sections */
+/* Homepage section backgrounds */
 body.dark-mode .home-section-light {
   background-color: #1A120B;
 }
@@ -500,7 +597,28 @@ body.dark-mode .home-section-muted {
   background-color: #2A1D12;
 }
 
-/* The reservations CTA strip needs its own dark override */
 body.dark-mode .reservations-cta {
   background-color: #0F0A06;
+}
+
+
+/*==================================================
+  16. RESPONSIVE TWEAKS
+==================================================*/
+
+@media (max-width: 576px) {
+
+  .hero-title {
+    font-size: 2.2rem;
+  }
+
+  .filter-btn {
+    padding: 6px 14px;
+    font-size: 0.85rem;
+  }
+
+  .gallery-row-img {
+    height: 200px;
+  }
+
 }
