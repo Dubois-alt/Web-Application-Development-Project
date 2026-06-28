@@ -191,9 +191,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 /*==================================================
   5. GALLERY PAGE — IMAGE HOVER EFFECT
-  Adds a smooth scale-up effect when hovering
-  over any gallery thumbnail image.
-  The page background does not change.
 ==================================================*/
 
 document.addEventListener('DOMContentLoaded', function () {

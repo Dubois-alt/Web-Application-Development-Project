@@ -197,7 +197,7 @@ a:hover {
       rgba(43, 22, 12, 0.65),
       rgba(43, 22, 12, 0.65)
     ),
-    url('../images/ambience/background ambience.png') center/cover no-repeat;
+    url('../images/ambience/backgroundambience.png') center/cover no-repeat;
   min-height: 80vh;
   display: flex;
   align-items: center;
